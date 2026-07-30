@@ -6,17 +6,21 @@
 <title>Prajna Bhandary — Full-Stack Software Engineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#101B2D;
-    --paper:#F5F7F8;
+    --ink:#0D1826;
+    --paper:#F3F6F7;
     --panel:#FFFFFF;
     --teal:#0E7C7B;
     --teal-deep:#0A5E5D;
+    --teal-bright:#14A3A0;
     --signal:#E2572B;
     --mist:#DCE4E7;
     --slate:#55606B;
+    --glow: radial-gradient(circle at 15% 20%, rgba(20,163,160,0.16), transparent 55%),
+            radial-gradient(circle at 85% 0%, rgba(226,87,43,0.10), transparent 45%),
+            radial-gradient(circle at 60% 90%, rgba(20,163,160,0.10), transparent 50%);
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
@@ -26,135 +30,233 @@
     font-family:'Inter',sans-serif;
     line-height:1.55;
     -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
   }
   .mono{font-family:'JetBrains Mono',monospace;}
   h1,h2,h3{font-family:'Space Grotesk',sans-serif; letter-spacing:-0.01em;}
   a{color:inherit; text-decoration:none;}
   .wrap{max-width:1080px; margin:0 auto; padding:0 32px;}
+  ::selection{background:var(--teal-bright); color:#fff;}
 
-  /* NAV */
+  .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){ .reveal{opacity:1; transform:none; transition:none;} }
+
   nav{
     position:sticky; top:0; z-index:50;
-    background:rgba(245,247,248,0.9); backdrop-filter:blur(8px);
+    background:rgba(243,246,247,0.82); backdrop-filter:blur(10px);
     border-bottom:1px solid var(--mist);
   }
-  nav .wrap{display:flex; align-items:center; justify-content:space-between; height:64px;}
-  .brand{font-weight:600; font-size:15px; letter-spacing:0.02em;}
-  .navlinks{display:flex; gap:28px; font-size:14px; color:var(--slate);}
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; height:66px;}
+  .brand{display:flex; align-items:center; gap:10px; font-weight:600; font-size:15px; letter-spacing:0.02em;}
+  .brand .mark{
+    width:30px; height:30px; border-radius:8px;
+    background:linear-gradient(135deg, var(--teal-bright), var(--teal-deep));
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:13px;
+    box-shadow:0 4px 10px rgba(10,94,93,0.28);
+  }
+  .navlinks{display:flex; gap:30px; font-size:14px; color:var(--slate);}
+  .navlinks a{position:relative; padding-bottom:4px;}
+  .navlinks a::after{content:"";position:absolute; left:0; right:100%; bottom:0; height:2px; background:var(--teal-bright); transition:right .2s ease;}
+  .navlinks a:hover::after{right:0;}
   .navlinks a:hover{color:var(--teal-deep);}
   .navcta{
     font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:500;
-    border:1px solid var(--ink); padding:8px 14px; border-radius:2px;
-    transition:background .15s, color .15s;
+    background:var(--ink); color:#fff; padding:9px 16px; border-radius:6px;
+    box-shadow:0 3px 10px rgba(13,24,38,0.25);
+    transition:transform .15s ease, box-shadow .15s ease;
   }
-  .navcta:hover{background:var(--ink); color:var(--paper);}
+  .navcta:hover{transform:translateY(-1px); box-shadow:0 6px 16px rgba(13,24,38,0.32);}
   @media (max-width:720px){ .navlinks{display:none;} }
 
-  /* HERO */
-  .hero{padding:72px 0 56px; border-bottom:1px solid var(--mist);}
-  .hero-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:56px; align-items:start;}
+  .hero{position:relative; padding:88px 0 64px; border-bottom:1px solid var(--mist); overflow:hidden;}
+  .hero::before{ content:""; position:absolute; inset:0; background:var(--glow); pointer-events:none; }
+  .hero::after{
+    content:""; position:absolute; top:-120px; right:-160px; width:480px; height:480px; border-radius:50%;
+    background:radial-gradient(circle, rgba(20,163,160,0.14), transparent 70%); pointer-events:none;
+  }
+  .hero-grid{position:relative; display:grid; grid-template-columns:1.3fr 1fr; gap:56px; align-items:start;}
   @media (max-width:860px){ .hero-grid{grid-template-columns:1fr;} }
 
+  .avatar-row{display:flex; align-items:center; gap:16px; margin-bottom:26px;}
+  .avatar{
+    width:56px; height:56px; border-radius:16px; flex-shrink:0;
+    background:linear-gradient(135deg, var(--teal-bright), var(--teal-deep) 60%, var(--ink));
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:20px;
+    box-shadow:0 10px 24px rgba(10,94,93,0.3);
+  }
   .badge{
     display:inline-flex; align-items:center; gap:8px;
     font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--teal-deep);
-    border:1px solid var(--teal); border-radius:20px; padding:5px 12px 5px 10px;
-    margin-bottom:22px;
+    background:#fff; border:1px solid var(--teal); border-radius:20px; padding:6px 13px 6px 11px;
+    box-shadow:0 3px 10px rgba(14,124,123,0.12);
   }
   .badge .dot{width:7px; height:7px; border-radius:50%; background:var(--signal); animation:pulse 2s infinite;}
   @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:.35;} }
   @media (prefers-reduced-motion: reduce){ .badge .dot{animation:none;} }
 
-  .hero h1{font-size:44px; line-height:1.12; font-weight:700; margin-bottom:18px;}
-  .hero h1 span{color:var(--teal-deep);}
-  .hero p.lede{font-size:17px; color:var(--slate); max-width:52ch; margin-bottom:28px;}
+  .hero h1{font-size:46px; line-height:1.12; font-weight:700; margin-bottom:18px;}
+  .hero h1 span{
+    background:linear-gradient(100deg, var(--teal-deep), var(--teal-bright));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero p.lede{font-size:17px; color:var(--slate); max-width:52ch; margin-bottom:30px;}
   .hero-actions{display:flex; gap:12px; flex-wrap:wrap;}
   .btn-primary{
-    background:var(--ink); color:var(--paper); font-size:14px; font-weight:500;
-    padding:12px 20px; border-radius:2px;
+    background:linear-gradient(135deg, var(--teal-bright), var(--teal-deep));
+    color:#fff; font-size:14px; font-weight:600;
+    padding:13px 22px; border-radius:8px;
+    box-shadow:0 8px 20px rgba(10,94,93,0.28);
+    transition:transform .15s ease, box-shadow .15s ease;
   }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 12px 26px rgba(10,94,93,0.36);}
   .btn-secondary{
-    border:1px solid var(--mist); font-size:14px; font-weight:500; color:var(--ink);
-    padding:12px 20px; border-radius:2px;
+    background:#fff; border:1px solid var(--mist); font-size:14px; font-weight:600; color:var(--ink);
+    padding:13px 22px; border-radius:8px;
+    transition:transform .15s ease, border-color .15s ease;
   }
-  .btn-primary:hover{background:var(--teal-deep);}
-  .btn-secondary:hover{border-color:var(--ink);}
+  .btn-secondary:hover{transform:translateY(-2px); border-color:var(--teal);}
 
-  /* diagnostic panel */
   .panel{
-    background:var(--ink); color:var(--paper); border-radius:6px; padding:24px 24px 20px;
+    position:relative;
+    background:linear-gradient(165deg, #14202F, var(--ink) 60%);
+    color:#fff; border-radius:14px; padding:26px 26px 22px;
     font-family:'JetBrains Mono',monospace;
+    box-shadow:0 20px 50px rgba(13,24,38,0.35), inset 0 1px 0 rgba(255,255,255,0.05);
   }
   .panel-head{
     display:flex; justify-content:space-between; align-items:center;
     font-size:11px; letter-spacing:0.08em; color:#8FA3AE; text-transform:uppercase;
     border-bottom:1px solid #263349; padding-bottom:12px; margin-bottom:14px;
   }
-  .panel-head .live{color:var(--signal);}
-  .panel-row{display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px dashed #263349; font-size:13px;}
+  .panel-head .live{color:#4ADE9A; display:flex; align-items:center; gap:6px;}
+  .panel-head .live .dot2{width:6px; height:6px; border-radius:50%; background:#4ADE9A; box-shadow:0 0 8px #4ADE9A; animation:pulse 2s infinite;}
+  .panel-row{display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px dashed #263349; font-size:13px;}
   .panel-row:last-child{border-bottom:none;}
   .panel-row .k{color:#8FA3AE;}
-  .panel-row .v{color:#fff; font-weight:500; text-align:right;}
+  .panel-row .v{color:#fff; font-weight:600; text-align:right;}
+  .panel-row .v.accent{color:var(--teal-bright);}
   .panel-foot{margin-top:16px; font-size:11px; color:#5C7079; line-height:1.6;}
 
-  /* SECTION generic */
-  section{padding:56px 0; border-bottom:1px solid var(--mist);}
-  .eyebrow{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--teal-deep); margin-bottom:8px;}
-  .section-title{font-size:26px; font-weight:700; margin-bottom:28px;}
+  section{padding:64px 0; border-bottom:1px solid var(--mist); position:relative;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--teal-deep); margin-bottom:10px;
+  }
+  .eyebrow::before{content:""; width:18px; height:1px; background:var(--teal);}
+  .section-title{font-size:28px; font-weight:700; margin-bottom:32px;}
 
-  /* SKILLS */
-  .skill-groups{display:grid; grid-template-columns:repeat(2,1fr); gap:22px 40px;}
+  .skill-groups{display:grid; grid-template-columns:repeat(2,1fr); gap:20px;}
   @media (max-width:720px){ .skill-groups{grid-template-columns:1fr;} }
-  .skill-group h4{font-size:13px; text-transform:uppercase; letter-spacing:0.06em; color:var(--slate); margin-bottom:10px; font-weight:600;}
+  .skill-group{
+    background:var(--panel); border:1px solid var(--mist); border-radius:12px; padding:22px;
+    transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .skill-group:hover{transform:translateY(-3px); box-shadow:0 14px 30px rgba(13,24,38,0.08); border-color:var(--teal);}
+  .skill-group h4{
+    display:flex; align-items:center; gap:9px;
+    font-size:13px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink); margin-bottom:14px; font-weight:700;
+  }
+  .skill-group h4 .icon{
+    width:26px; height:26px; border-radius:7px; display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg, rgba(20,163,160,0.16), rgba(10,94,93,0.08));
+    color:var(--teal-deep); flex-shrink:0;
+  }
   .chips{display:flex; flex-wrap:wrap; gap:8px;}
   .chip{
-    font-family:'JetBrains Mono',monospace; font-size:12px; background:var(--panel);
-    border:1px solid var(--mist); border-radius:3px; padding:5px 10px; color:var(--ink);
+    font-family:'JetBrains Mono',monospace; font-size:12px; background:var(--paper);
+    border:1px solid var(--mist); border-radius:5px; padding:6px 11px; color:var(--ink);
+    transition:background .15s ease, border-color .15s ease, transform .15s ease;
   }
+  .chip:hover{background:#fff; border-color:var(--teal); transform:translateY(-1px);}
 
-  /* EXPERIENCE */
-  .job{display:grid; grid-template-columns:150px 1fr; gap:24px; padding:26px 0; border-top:1px solid var(--mist);}
-  .job:first-of-type{border-top:none;}
+  .timeline{position:relative;}
+  .timeline::before{
+    content:""; position:absolute; left:150px; top:6px; bottom:6px; width:2px;
+    background:linear-gradient(var(--teal), var(--mist));
+  }
+  @media (max-width:720px){ .timeline::before{display:none;} }
+  .job{display:grid; grid-template-columns:150px 1fr; gap:24px; padding:30px 0; position:relative;}
+  .job:not(:first-child){border-top:1px solid var(--mist);}
   @media (max-width:720px){ .job{grid-template-columns:1fr; gap:8px;} }
-  .job-date{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--slate); padding-top:3px;}
-  .job-title{font-size:17px; font-weight:700; margin-bottom:2px;}
-  .job-org{font-size:14px; color:var(--teal-deep); font-weight:500; margin-bottom:14px;}
-  .job-sub{font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:0.04em; color:var(--slate); margin:14px 0 8px;}
+  .job > div:last-child{padding-left:6px;}
+  @media (max-width:720px){ .job > div:last-child{padding-left:0;} }
+  .job-date{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--slate); padding-top:3px; position:relative;}
+  .job-date::after{
+    content:""; position:absolute; left:144.5px; top:5px; width:11px; height:11px; border-radius:50%;
+    background:var(--teal-bright); border:3px solid var(--paper); box-shadow:0 0 0 2px var(--teal);
+    z-index:2;
+  }
+  @media (max-width:720px){ .job-date::after{display:none;} }
+  .job-title{font-size:18px; font-weight:700; margin-bottom:3px;}
+  .job-org{font-size:14px; color:var(--teal-deep); font-weight:600; margin-bottom:16px;}
+  .job-sub{
+    display:inline-block; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.05em;
+    color:var(--teal-deep); background:rgba(20,163,160,0.1); padding:4px 10px; border-radius:5px;
+    margin:16px 0 10px;
+  }
   .job ul{padding-left:18px; margin-bottom:4px;}
-  .job li{font-size:14.5px; color:#2B3648; margin-bottom:7px;}
-  .job li::marker{color:var(--teal);}
+  .job li{font-size:14.5px; color:#2B3648; margin-bottom:8px;}
+  .job li::marker{color:var(--teal); font-weight:700;}
 
-  /* IMPACT strip */
   .impact{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
   @media (max-width:720px){ .impact{grid-template-columns:repeat(2,1fr);} }
-  .impact-card{background:var(--panel); border:1px solid var(--mist); border-radius:6px; padding:20px;}
-  .impact-num{font-family:'Space Grotesk',sans-serif; font-size:26px; font-weight:700; color:var(--teal-deep);}
+  .impact-card{
+    background:linear-gradient(165deg, #fff, #FBFDFD);
+    border:1px solid var(--mist); border-radius:12px; padding:22px;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .impact-card:hover{transform:translateY(-4px); box-shadow:0 16px 32px rgba(13,24,38,0.1);}
+  .impact-num{font-family:'Space Grotesk',sans-serif; font-size:28px; font-weight:700; color:var(--teal-deep);}
   .impact-label{font-size:12.5px; color:var(--slate); margin-top:4px;}
 
-  /* EDUCATION */
-  .edu-item{display:flex; gap:16px; padding:18px 0; border-top:1px solid var(--mist);}
-  .edu-item:first-child{border-top:none;}
-  .edu-icon{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--teal-deep); padding-top:2px; width:40px;}
-  .edu-degree{font-weight:700; font-size:15px;}
+  .edu-item{
+    display:flex; gap:18px; padding:20px; align-items:center;
+    background:var(--panel); border:1px solid var(--mist); border-radius:12px; margin-bottom:14px;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .edu-item:hover{transform:translateY(-2px); box-shadow:0 12px 26px rgba(13,24,38,0.08);}
+  .edu-icon{
+    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:13px; color:#fff;
+    width:46px; height:46px; border-radius:10px; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg, var(--teal-bright), var(--teal-deep));
+  }
+  .edu-degree{font-weight:700; font-size:15.5px;}
   .edu-meta{font-size:13.5px; color:var(--slate); margin-top:2px;}
 
-  /* FOOTER */
-  footer{padding:56px 0 40px;}
-  .foot-grid{display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px;}
-  footer h2{font-size:24px; margin-bottom:10px;}
+  footer{padding:64px 0 44px; position:relative; overflow:hidden;}
+  footer::before{
+    content:""; position:absolute; inset:0;
+    background:radial-gradient(circle at 20% 0%, rgba(20,163,160,0.12), transparent 55%);
+    pointer-events:none;
+  }
+  .foot-grid{position:relative; display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px;}
+  footer h2{font-size:26px; margin-bottom:10px;}
   footer p{color:var(--slate); font-size:14.5px; max-width:40ch;}
-  .foot-links{display:flex; gap:18px; font-size:14px;}
-  .foot-links a{border-bottom:1px solid var(--mist); padding-bottom:2px;}
-  .foot-links a:hover{border-color:var(--ink);}
-  .trace{margin:40px 0 24px;}
-  .bottom-line{font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--slate); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;}
+  .foot-links{display:flex; gap:12px; flex-wrap:wrap;}
+  .foot-links a{
+    display:flex; align-items:center; gap:8px;
+    font-size:13.5px; font-weight:600; background:#fff; border:1px solid var(--mist);
+    padding:10px 16px; border-radius:8px;
+    transition:transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+  }
+  .foot-links a:hover{transform:translateY(-2px); border-color:var(--teal); box-shadow:0 10px 22px rgba(13,24,38,0.1);}
+  .bottom-line{
+    font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--slate);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
+    margin-top:44px; padding-top:22px; border-top:1px solid var(--mist);
+  }
 </style>
 </head>
 <body>
 
 <nav>
   <div class="wrap">
-    <div class="brand">Prajna Bhandary</div>
+    <div class="brand"><span class="mark">PB</span>Prajna Bhandary</div>
     <div class="navlinks">
       <a href="#skills">Skills</a>
       <a href="#experience">Experience</a>
@@ -167,7 +269,10 @@
 <header class="hero">
   <div class="wrap hero-grid">
     <div>
-      <div class="badge"><span class="dot"></span>OPEN TO NEW OPPORTUNITIES</div>
+      <div class="avatar-row">
+        <div class="avatar">PB</div>
+        <div class="badge"><span class="dot"></span>OPEN TO NEW OPPORTUNITIES</div>
+      </div>
       <h1>Full-Stack Engineer building <span>reliable software</span>, from ad-tech to medical devices</h1>
       <p class="lede">8+ years shipping production web applications and internal AI tooling — including safety-critical software for Class II/III medical devices — with a track record of owning features end-to-end and mentoring engineers along the way.</p>
       <div class="hero-actions">
@@ -177,42 +282,42 @@
     </div>
 
     <div class="panel">
-      <div class="panel-head"><span>candidate_status.log</span><span class="live">● live</span></div>
-      <div class="panel-row"><span class="k">EXPERIENCE</span><span class="v">8+ yrs</span></div>
+      <div class="panel-head"><span>candidate_status.log</span><span class="live"><span class="dot2"></span>live</span></div>
+      <div class="panel-row"><span class="k">EXPERIENCE</span><span class="v accent">8+ yrs</span></div>
       <div class="panel-row"><span class="k">ENGINEERS MENTORED</span><span class="v">4</span></div>
       <div class="panel-row"><span class="k">FLAGSHIP FEATURE</span><span class="v">Segmental Tracking</span></div>
       <div class="panel-row"><span class="k">COMPLIANCE SHIPPED</span><span class="v">IEC 62304</span></div>
-      <div class="panel-row"><span class="k">VERIFIED SAVINGS</span><span class="v">$79,005 / yr</span></div>
+      <div class="panel-row"><span class="k">VERIFIED SAVINGS</span><span class="v accent">$79,005 / yr</span></div>
       <div class="panel-foot">Location: Broomfield, CO &nbsp;·&nbsp; Remote-friendly</div>
     </div>
   </div>
 </header>
 
 <section id="skills">
-  <div class="wrap">
+  <div class="wrap reveal">
     <div class="eyebrow">What I work with</div>
     <h2 class="section-title">Core Skills</h2>
     <div class="skill-groups">
       <div class="skill-group">
-        <h4>Languages</h4>
+        <h4><span class="icon">&lt;/&gt;</span>Languages</h4>
         <div class="chips">
           <span class="chip">JavaScript</span><span class="chip">TypeScript</span><span class="chip">Python</span><span class="chip">C++</span><span class="chip">Node.js</span>
         </div>
       </div>
       <div class="skill-group">
-        <h4>Frameworks & ML</h4>
+        <h4><span class="icon">✦</span>Frameworks & ML</h4>
         <div class="chips">
           <span class="chip">React</span><span class="chip">Redux</span><span class="chip">Angular</span><span class="chip">Express.js</span><span class="chip">TensorFlow</span><span class="chip">PyTorch</span><span class="chip">LangChain</span><span class="chip">OpenAI</span><span class="chip">RAG</span>
         </div>
       </div>
       <div class="skill-group">
-        <h4>Architecture & APIs</h4>
+        <h4><span class="icon">⌘</span>Architecture & APIs</h4>
         <div class="chips">
           <span class="chip">REST APIs</span><span class="chip">GraphQL</span><span class="chip">Microservices</span><span class="chip">MVC Pattern</span><span class="chip">SPA</span><span class="chip">RabbitMQ</span>
         </div>
       </div>
       <div class="skill-group">
-        <h4>Cloud, DevOps & Data</h4>
+        <h4><span class="icon">☁</span>Cloud, DevOps & Data</h4>
         <div class="chips">
           <span class="chip">AWS EC2 / S3</span><span class="chip">DynamoDB</span><span class="chip">Redshift</span><span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">GitLab CI/CD</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span>
         </div>
@@ -222,70 +327,72 @@
 </section>
 
 <section id="experience">
-  <div class="wrap">
+  <div class="wrap reveal">
     <div class="eyebrow">Where I've worked</div>
     <h2 class="section-title">Experience</h2>
 
-    <div class="job">
-      <div class="job-date">JUN 2024 —<br>PRESENT</div>
-      <div>
-        <div class="job-title">Sr. Software Engineer, R&D</div>
-        <div class="job-org">Medtronic Inc. · Lafayette, CO</div>
+    <div class="timeline">
+      <div class="job">
+        <div class="job-date">JUN 2024 —<br>PRESENT</div>
+        <div>
+          <div class="job-title">Sr. Software Engineer, R&D</div>
+          <div class="job-org">Medtronic Inc. · Lafayette, CO</div>
 
-        <div class="job-sub">Digital Technologies — Surgical OU</div>
-        <ul>
-          <li>Improved system reliability by implementing thread-safety and hysteresis in the thermal manager module, directly reducing the risk of fan control failures in a safety-critical (IEC 62304) medical device.</li>
-          <li>Designed and built the unit-test infrastructure for VortexController (IEC 62304 Class B), enabling automated, hardware-independent software unit verification required by IEC 62304 §5.5.5 — and surfaced a latent race condition in the heartbeat timer along the way.</li>
-          <li>Enabled observability by building the event-logging pipeline that helps the customer success team track and diagnose runtime events.</li>
-        </ul>
+          <span class="job-sub">Digital Technologies — Surgical OU</span>
+          <ul>
+            <li>Improved system reliability by implementing thread-safety and hysteresis in the thermal manager module, directly reducing the risk of fan control failures in a safety-critical (IEC 62304) medical device.</li>
+            <li>Designed and built the unit-test infrastructure for VortexController (IEC 62304 Class B), enabling automated, hardware-independent software unit verification required by IEC 62304 §5.5.5 — and surfaced a latent race condition in the heartbeat timer along the way.</li>
+            <li>Enabled observability by building the event-logging pipeline that helps the customer success team track and diagnose runtime events.</li>
+          </ul>
 
-        <div class="job-sub">Cranial and Spine Technologies</div>
-        <ul>
-          <li>Owned end-to-end features including SureTrak, Instrument Management sub-features, AiBLE access, and Segmental Tracking — the flagship feature on a new product line (AiBLE released April 2026).</li>
-          <li>Improved the API access layer for AgentAsAService, an in-house platform that builds LLM-powered AI agents to automate workflows like code review, document generation, and cross-platform integration.</li>
-          <li>Onboarded one senior engineer and mentored three junior engineers through the full software product development lifecycle.</li>
-        </ul>
+          <span class="job-sub">Cranial and Spine Technologies</span>
+          <ul>
+            <li>Owned end-to-end features including SureTrak, Instrument Management sub-features, AiBLE access, and Segmental Tracking — the flagship feature on a new product line (AiBLE released April 2026).</li>
+            <li>Improved the API access layer for AgentAsAService, an in-house platform that builds LLM-powered AI agents to automate workflows like code review, document generation, and cross-platform integration.</li>
+            <li>Onboarded one senior engineer and mentored three junior engineers through the full software product development lifecycle.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="job-date">MAR 2019 —<br>MAY 2024</div>
+        <div>
+          <div class="job-title">Software Engineer II, R&D</div>
+          <div class="job-org">Medtronic Inc. · Memphis, TN / Lafayette, CO</div>
+          <ul>
+            <li>Led feasibility studies and SDLC execution for new product introduction on Class II medical device software.</li>
+            <li>Developed Linux distribution packages (.iso, .deb) supporting Surgical and Spine Navigation software used in minimally invasive spine surgery.</li>
+            <li>Earned Green Belt certification; led cross-functional reviews using structured decision tools, resulting in a risk-mitigation solution with an estimated $79,005 in annualized savings.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="job-date">JUN 2018 —<br>AUG 2018</div>
+        <div>
+          <div class="job-title">Software Developer Intern</div>
+          <div class="job-org">RepHike · Buffalo, NY</div>
+          <ul>
+            <li>Built a micro-influencer management platform, including search and recommendation systems for brand campaigns.</li>
+            <li>Implemented GraphQL as a middleware layer, cutting response time and database calls by 2x.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="job-date">JUN 2015 —<br>MAR 2017</div>
+        <div>
+          <div class="job-title">Full Stack Developer</div>
+          <div class="job-org">Fork Media · Mumbai, India</div>
+          <ul>
+            <li>Built the data pipeline for Buzzerati, a market-leading SaaS influencer-recommendation platform.</li>
+            <li>Designed a scalable data-management platform and microservices for audience profiling — improving server efficiency by 53% and profiling accuracy by 30%.</li>
+          </ul>
+        </div>
       </div>
     </div>
 
-    <div class="job">
-      <div class="job-date">MAR 2019 —<br>MAY 2024</div>
-      <div>
-        <div class="job-title">Software Engineer II, R&D</div>
-        <div class="job-org">Medtronic Inc. · Memphis, TN / Lafayette, CO</div>
-        <ul>
-          <li>Led feasibility studies and SDLC execution for new product introduction on Class II medical device software.</li>
-          <li>Developed Linux distribution packages (.iso, .deb) supporting Surgical and Spine Navigation software used in minimally invasive spine surgery.</li>
-          <li>Earned Green Belt certification; led cross-functional reviews using structured decision tools, resulting in a risk-mitigation solution with an estimated $79,005 in annualized savings.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="job">
-      <div class="job-date">JUN 2018 —<br>AUG 2018</div>
-      <div>
-        <div class="job-title">Software Developer Intern</div>
-        <div class="job-org">RepHike · Buffalo, NY</div>
-        <ul>
-          <li>Built a micro-influencer management platform, including search and recommendation systems for brand campaigns.</li>
-          <li>Implemented GraphQL as a middleware layer, cutting response time and database calls by 2x.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="job">
-      <div class="job-date">JUN 2015 —<br>MAR 2017</div>
-      <div>
-        <div class="job-title">Full Stack Developer</div>
-        <div class="job-org">Fork Media · Mumbai, India</div>
-        <ul>
-          <li>Built the data pipeline for Buzzerati, a market-leading SaaS influencer-recommendation platform.</li>
-          <li>Designed a scalable data-management platform and microservices for audience profiling — improving server efficiency by 53% and profiling accuracy by 30%.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="impact" style="margin-top:36px;">
+    <div class="impact" style="margin-top:40px;">
       <div class="impact-card"><div class="impact-num">8+</div><div class="impact-label">Years of experience</div></div>
       <div class="impact-card"><div class="impact-num">4</div><div class="impact-label">Engineers mentored</div></div>
       <div class="impact-card"><div class="impact-num">$79K</div><div class="impact-label">Annualized savings delivered</div></div>
@@ -295,18 +402,18 @@
 </section>
 
 <section id="education">
-  <div class="wrap">
+  <div class="wrap reveal">
     <div class="eyebrow">Academic background</div>
     <h2 class="section-title">Education</h2>
     <div class="edu-item">
-      <div class="edu-icon">M.S.</div>
+      <div class="edu-icon">MS</div>
       <div>
         <div class="edu-degree">Computer Science — AI Specialization</div>
         <div class="edu-meta">State University of New York at Buffalo · Aug 2017 – Feb 2019</div>
       </div>
     </div>
     <div class="edu-item">
-      <div class="edu-icon">B.E.</div>
+      <div class="edu-icon">BE</div>
       <div>
         <div class="edu-degree">Computer Science</div>
         <div class="edu-meta">Canara Engineering College · Aug 2010 – May 2014</div>
@@ -316,23 +423,30 @@
 </section>
 
 <footer>
-  <div class="wrap">
+  <div class="wrap reveal">
     <div class="foot-grid">
       <div>
         <h2>Let's talk.</h2>
         <p>Available for full-stack and platform engineering roles — open to remote and Colorado-based opportunities.</p>
       </div>
       <div class="foot-links">
-        <a href="mailto:prajnabhandary03@gmail.com">Email</a>
-        <a href="tel:+13159753364">(315) 975-3364</a>
+        <a href="mailto:prajnabhandary03@gmail.com">✉ Email</a>
+        <a href="tel:+13159753364">☎ (315) 975-3364</a>
       </div>
     </div>
-    <div class="bottom-line" style="margin-top:32px;">
+    <div class="bottom-line">
       <span>Prajna Bhandary · Broomfield, CO</span>
       <span>Full-Stack Software Engineer</span>
     </div>
   </div>
 </footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
