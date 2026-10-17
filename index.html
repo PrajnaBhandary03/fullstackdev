@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Prajna Bhandary — Full-Stack Software Engineer</title>
+<title>Prajna Bhandary — Senior Software Engineer (C++, TypeScript, React)</title>
+<meta name="description" content="Prajna Bhandary, Senior Software Engineer with 9+ years building full-stack applications with C++, TypeScript, React, and Node.js, including Class II surgical navigation software under IEC 62304.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -155,6 +156,7 @@
     background:var(--panel); border:1px solid var(--mist); border-radius:12px; padding:22px;
     transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
   }
+  .skill-group.wide{grid-column:1 / -1;}
   .skill-group:hover{transform:translateY(-3px); box-shadow:0 14px 30px rgba(13,24,38,0.08); border-color:var(--teal);}
   .skill-group h4{
     display:flex; align-items:center; gap:9px;
@@ -201,6 +203,9 @@
   .job ul{padding-left:18px; margin-bottom:4px;}
   .job li{font-size:14.5px; color:#2B3648; margin-bottom:8px;}
   .job li::marker{color:var(--teal); font-weight:700;}
+  .inline-link{color:var(--teal-deep); font-weight:600; border-bottom:1px solid rgba(14,124,123,0.35); transition:border-color .15s ease, color .15s ease;}
+  .inline-link sup{font-size:0.6em; line-height:0;}
+  .inline-link:hover{color:var(--teal-bright); border-color:var(--teal-bright);}
 
   .impact{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
   @media (max-width:720px){ .impact{grid-template-columns:repeat(2,1fr);} }
@@ -250,6 +255,15 @@
     display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
     margin-top:44px; padding-top:22px; border-top:1px solid var(--mist);
   }
+  .section-intro{color:var(--slate); font-size:15.5px; max-width:60ch; margin:-18px 0 28px;}
+  .about-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
+  @media (max-width:900px){ .about-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .about-grid{grid-template-columns:1fr;} }
+  .about-card{background:var(--panel); border:1px solid var(--mist); border-radius:14px; padding:22px; transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;}
+  .about-card:hover{transform:translateY(-3px); box-shadow:0 14px 30px rgba(13,24,38,0.08); border-color:var(--teal);}
+  .about-emoji{font-size:26px; margin-bottom:10px;}
+  .about-card h3{font-size:16px; margin-bottom:6px;}
+  .about-card p{font-size:14px; color:var(--slate);}
 </style>
 </head>
 <body>
@@ -258,11 +272,13 @@
   <div class="wrap">
     <div class="brand"><span class="mark">PB</span>Prajna Bhandary</div>
     <div class="navlinks">
+      <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#experience">Experience</a>
       <a href="#education">Education</a>
+      <a href="#leadership">Leadership</a>
     </div>
-    <a class="navcta" href="mailto:prajnabhandary03@gmail.com">Get in touch</a>
+    <a class="navcta" href="mailto:prajnabhandary03@gmail.com">Say hello 👋</a>
   </div>
 </nav>
 
@@ -271,55 +287,86 @@
     <div>
       <div class="avatar-row">
         <div class="avatar">PB</div>
-        <div class="badge"><span class="dot"></span>OPEN TO NEW OPPORTUNITIES</div>
+        <div class="badge"><span class="dot"></span>OPEN TO NEW ROLES</div>
       </div>
-      <h1>Full-Stack Engineer building <span>reliable software</span>, from ad-tech to medical devices</h1>
-      <p class="lede">8+ years shipping production web applications and internal AI tooling — including safety-critical software for Class II/III medical devices — with a track record of owning features end-to-end and mentoring engineers along the way.</p>
+      <h1>Hi, I'm Prajna. I build <span>reliable full-stack software</span>, from ad-tech to medical devices.</h1>
+      <p class="lede">I'm a Senior Software Engineer with 9+ years of experience in C++, TypeScript, React, and Node.js. For over 7 years at Medtronic, I've helped deliver Class II surgical navigation software under IEC 62304, from the first feasibility study all the way to release and post-market support. I love owning a feature end to end, making code easier to test, and helping the engineers around me grow.</p>
       <div class="hero-actions">
-        <a class="btn-primary" href="mailto:prajnabhandary03@gmail.com">Email me</a>
-        <a class="btn-secondary" href="#experience">View experience</a>
+        <a class="btn-primary" href="mailto:prajnabhandary03@gmail.com">Let's chat</a>
+        <a class="btn-secondary" href="#experience">See my work</a>
       </div>
     </div>
 
     <div class="panel">
       <div class="panel-head"><span>candidate_status.log</span><span class="live"><span class="dot2"></span>live</span></div>
-      <div class="panel-row"><span class="k">EXPERIENCE</span><span class="v accent">8+ yrs</span></div>
-      <div class="panel-row"><span class="k">ENGINEERS MENTORED</span><span class="v">4</span></div>
+      <div class="panel-row"><span class="k">EXPERIENCE</span><span class="v accent">9+ yrs</span></div>
+      <div class="panel-row"><span class="k">CORE STACK</span><span class="v">C++ · TypeScript · React</span></div>
       <div class="panel-row"><span class="k">FLAGSHIP FEATURE</span><span class="v">Segmental Tracking</span></div>
-      <div class="panel-row"><span class="k">COMPLIANCE SHIPPED</span><span class="v">IEC 62304</span></div>
-      <div class="panel-row"><span class="k">VERIFIED SAVINGS</span><span class="v accent">$79,005 / yr</span></div>
-      <div class="panel-foot">Location: Broomfield, CO &nbsp;·&nbsp; Remote-friendly</div>
+      <div class="panel-row"><span class="k">COMPLIANCE</span><span class="v">IEC 62304</span></div>
+      <div class="panel-row"><span class="k">EST. ANNUAL SAVINGS</span><span class="v accent">$79,005</span></div>
+      <div class="panel-foot">Location: Broomfield, CO &nbsp;·&nbsp; Open to remote</div>
     </div>
   </div>
 </header>
 
+<section id="about">
+  <div class="wrap reveal">
+    <div class="eyebrow">A little about me</div>
+    <h2 class="section-title">What I care about</h2>
+    <div class="about-grid">
+      <div class="about-card"><div class="about-emoji">🧭</div><h3>Software people can trust</h3><p>Most of my career has been in regulated medical device software, where thread safety, test coverage, and clear requirements really matter.</p></div>
+      <div class="about-card"><div class="about-emoji">🧩</div><h3>The whole stack</h3><p>I'm happy writing a C++ service, a REST API, or a React/TypeScript UI, and I like connecting all three into one smooth workflow.</p></div>
+      <div class="about-card"><div class="about-emoji">👂</div><h3>Listening to users</h3><p>I've partnered with surgeons in feasibility and V&amp;V labs to turn their feedback into requirements and better features.</p></div>
+      <div class="about-card"><div class="about-emoji">🌱</div><h3>Growing people</h3><p>I've onboarded and mentored engineers, and I'm active in the Society of Women Engineers and the AIM CO steering committee.</p></div>
+    </div>
+  </div>
+</section>
+
 <section id="skills">
   <div class="wrap reveal">
-    <div class="eyebrow">What I work with</div>
-    <h2 class="section-title">Core Skills</h2>
+    <div class="eyebrow">My toolbox</div>
+    <h2 class="section-title">What I work with</h2>
     <div class="skill-groups">
       <div class="skill-group">
         <h4><span class="icon">&lt;/&gt;</span>Languages</h4>
         <div class="chips">
-          <span class="chip">JavaScript</span><span class="chip">TypeScript</span><span class="chip">Python</span><span class="chip">C++</span><span class="chip">Node.js</span>
+          <span class="chip">C++</span><span class="chip">TypeScript</span><span class="chip">JavaScript</span><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">HTML</span><span class="chip">CSS</span>
         </div>
       </div>
       <div class="skill-group">
-        <h4><span class="icon">✦</span>Frameworks & ML</h4>
+        <h4><span class="icon">◧</span>Front End</h4>
         <div class="chips">
-          <span class="chip">React</span><span class="chip">Redux</span><span class="chip">Angular</span><span class="chip">Express.js</span><span class="chip">TensorFlow</span><span class="chip">PyTorch</span><span class="chip">LangChain</span><span class="chip">OpenAI</span><span class="chip">RAG</span>
+          <span class="chip">React</span><span class="chip">Redux</span><span class="chip">React Hooks</span><span class="chip">Angular</span><span class="chip">Vite</span><span class="chip">Storybook</span><span class="chip">Electron</span><span class="chip">Responsive UI</span><span class="chip">SPA</span>
         </div>
       </div>
       <div class="skill-group">
-        <h4><span class="icon">⌘</span>Architecture & APIs</h4>
+        <h4><span class="icon">⌘</span>Back End & Architecture</h4>
         <div class="chips">
-          <span class="chip">REST APIs</span><span class="chip">GraphQL</span><span class="chip">Microservices</span><span class="chip">MVC Pattern</span><span class="chip">SPA</span><span class="chip">RabbitMQ</span>
+          <span class="chip">Node.js</span><span class="chip">Express.js</span><span class="chip">REST APIs</span><span class="chip">OpenAPI</span><span class="chip">GraphQL</span><span class="chip">Microservices</span><span class="chip">RabbitMQ</span><span class="chip">Qt</span><span class="chip">MVC</span><span class="chip">Design Patterns</span>
         </div>
       </div>
       <div class="skill-group">
-        <h4><span class="icon">☁</span>Cloud, DevOps & Data</h4>
+        <h4><span class="icon">✓</span>Testing & Quality</h4>
         <div class="chips">
-          <span class="chip">AWS EC2 / S3</span><span class="chip">DynamoDB</span><span class="chip">Redshift</span><span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">GitLab CI/CD</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span>
+          <span class="chip">GoogleTest</span><span class="chip">Vitest</span><span class="chip">React Testing Library</span><span class="chip">Unit Test Infrastructure</span><span class="chip">Thread Safety</span><span class="chip">Code Review</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4><span class="icon">✦</span>Data & AI/ML</h4>
+        <div class="chips">
+          <span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">DynamoDB</span><span class="chip">AWS Redshift</span><span class="chip">PyTorch</span><span class="chip">TensorFlow</span><span class="chip">Keras</span><span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">LangChain</span><span class="chip">LLMs</span><span class="chip">RAG</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4><span class="icon">☁</span>Cloud & DevOps</h4>
+        <div class="chips">
+          <span class="chip">AWS EC2 / S3</span><span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">GitLab CI/CD</span><span class="chip">TeamCity</span><span class="chip">CMake</span><span class="chip">Linux</span><span class="chip">Debian Packaging</span><span class="chip">Git</span>
+        </div>
+      </div>
+      <div class="skill-group wide">
+        <h4><span class="icon">⚕</span>Regulated Software & Process</h4>
+        <div class="chips">
+          <span class="chip">IEC 62304</span><span class="chip">SDLC</span><span class="chip">Verification & Validation</span><span class="chip">Requirements Management</span><span class="chip">Risk Mitigation</span><span class="chip">Agile / Scrum</span><span class="chip">Jira</span><span class="chip">Confluence</span>
         </div>
       </div>
     </div>
@@ -328,28 +375,32 @@
 
 <section id="experience">
   <div class="wrap reveal">
-    <div class="eyebrow">Where I've worked</div>
-    <h2 class="section-title">Experience</h2>
+    <div class="eyebrow">My journey so far</div>
+    <h2 class="section-title">Where I've worked</h2>
 
     <div class="timeline">
       <div class="job">
         <div class="job-date">JUN 2024 —<br>PRESENT</div>
         <div>
-          <div class="job-title">Sr. Software Engineer, R&D</div>
-          <div class="job-org">Medtronic Inc. · Lafayette, CO</div>
+          <div class="job-title">Senior Software Engineer, R&D</div>
+          <div class="job-org">Medtronic · Lafayette, CO</div>
 
-          <span class="job-sub">Digital Technologies — Surgical OU</span>
+          <span class="job-sub">Digital Technologies — Surgical Operating Unit</span>
           <ul>
-            <li>Improved system reliability by implementing thread-safety and hysteresis in the thermal manager module, directly reducing the risk of fan control failures in a safety-critical (IEC 62304) medical device.</li>
-            <li>Designed and built the unit-test infrastructure for VortexController (IEC 62304 Class B), enabling automated, hardware-independent software unit verification required by IEC 62304 §5.5.5 — and surfaced a latent race condition in the heartbeat timer along the way.</li>
-            <li>Enabled observability by building the event-logging pipeline that helps the customer success team track and diagnose runtime events.</li>
+            <li>Improved reliability of the <a class="inline-link" href="https://news.medtronic.com/2026-07-21-A-new-era-for-surgery-with-real-time-AI-Medtronic-to-unveil-Touch-Surgery-TM-Aide,-the-next-generation-compute-platform-for-the-operating-room-at-Society-of-Robotic-Surgery-2026" target="_blank" rel="noopener">AiDE</a> safety-critical medical device by adding thread safety and hysteresis to the C++ thermal manager, reducing the risk of fan control failures.</li>
+            <li>Built an event logging pipeline that gives the customer success team visibility to track and diagnose runtime events in the field.</li>
+            <li>Designed and built unit test infrastructure for the app controller module (IEC 62304 Class B), enabling automated, hardware-independent unit verification per IEC 62304 §5.5.5; the effort surfaced and fixed a latent race condition in the heartbeat timer.</li>
           </ul>
 
-          <span class="job-sub">Cranial and Spine Technologies</span>
+          <span class="job-sub">Cranial and Spine Technologies — Surgical Navigation</span>
           <ul>
-            <li>Owned end-to-end features including SureTrak, Instrument Management sub-features, AiBLE access, and Segmental Tracking — the flagship feature on a new product line (AiBLE released April 2026).</li>
-            <li>Improved the API access layer for AgentAsAService, an in-house platform that builds LLM-powered AI agents to automate workflows like code review, document generation, and cross-platform integration.</li>
-            <li>Onboarded one senior engineer and mentored three junior engineers through the full software product development lifecycle.</li>
+            <li>Owned end-to-end delivery of sub-features in <a class="inline-link" href="https://www.medtronic.com/en-us/healthcare-professionals/specialties/spinal-cranial-orthopedic/therapies-procedures/technology-ai-driven-surgery/aible-smart-ecosystem/artificial-intelligence.html#stealth" target="_blank" rel="noopener">LiveAlign<sup>™</sup></a> Segmental Tracking, a first-to-market spine navigation feature, building the C++ Tracker Placement service and React/TypeScript workflow UI for tracker assignment, verification, pause/resume, and footswitch control.</li>
+            <li>Delivered multiple features for the <a class="inline-link" href="https://www.medtronic.com/en-us/healthcare-professionals/specialties/spinal-cranial-orthopedic.html" target="_blank" rel="noopener">AiBLE ecosystem</a> (released April 2026), including an instrument management service built in C++ on the back end, front-end state, and typed React hooks. Also implemented locked-access handling for a tiered customer base.</li>
+            <li>Built a reusable toast notification service and status components used across navigation workflows.</li>
+            <li>Led defect triage and resolution for Spine Navigation through engineering and release builds and post-launch hypercare; supported key opinion leader (KOL) labs and documented processes in Confluence.</li>
+            <li>Maintained multi-layer CMake build configuration and application packaging and distribution with Electron and Debian packages.</li>
+            <li>Hardened the API layer of AgentAsAService, an in-house platform that builds LLM-powered AI agents for code review, document generation, and cross-platform integration, by adding error handling, input validation, and logging.</li>
+            <li>Onboarded one senior engineer and mentored three junior engineers on software product development processes.</li>
           </ul>
         </div>
       </div>
@@ -358,11 +409,15 @@
         <div class="job-date">MAR 2019 —<br>MAY 2024</div>
         <div>
           <div class="job-title">Software Engineer II, R&D</div>
-          <div class="job-org">Medtronic Inc. · Memphis, TN / Lafayette, CO</div>
+          <div class="job-org">Medtronic · Memphis, TN</div>
           <ul>
-            <li>Led feasibility studies and SDLC execution for new product introduction on Class II medical device software.</li>
-            <li>Developed Linux distribution packages (.iso, .deb) supporting Surgical and Spine Navigation software used in minimally invasive spine surgery.</li>
-            <li>Earned Green Belt certification; led cross-functional reviews using structured decision tools, resulting in a risk-mitigation solution with an estimated $79,005 in annualized savings.</li>
+            <li>Led feasibility studies and the software development life cycle (SDLC) for new product introductions on Class II medical device navigation software on <a class="inline-link" href="https://www.medtronic.com/en-us/healthcare-professionals/products/surgical-navigation-imaging/surgical-navigation-systems/stealthstation-s8-navigation-platform.html" target="_blank" rel="noopener">StealthStation</a>.</li>
+            <li>Developed SureTrak instrument tracking across a C++ localization service, the Instruments REST API, and the React front end.</li>
+            <li>Built React/TypeScript features for the Stealth navigation application, including image fusion views with blend and split modes, registration verification, spine implant and rod planning, instrument management, and DICOM export.</li>
+            <li>Built Linux software packages (.iso, .deb) to introduce new spine instruments and implants to surgical navigation systems.</li>
+            <li>Localized instrument tool packages for Chinese and Japanese markets.</li>
+            <li>Partnered with surgeons in feasibility and V&V labs to gather voice of customer (VOC) feedback for navigation software.</li>
+            <li>Green Belt project: applied Design for Reliability and Manufacturability (DRM) to turn VOC into requirements addressing visualization-related patient risk; led cross-functional reviews with Pugh Matrix and decision trees, delivering an estimated $79,005 in annualized savings.</li>
           </ul>
         </div>
       </div>
@@ -373,8 +428,10 @@
           <div class="job-title">Software Developer Intern</div>
           <div class="job-org">RepHike · Buffalo, NY</div>
           <ul>
-            <li>Built a micro-influencer management platform, including search and recommendation systems for brand campaigns.</li>
-            <li>Implemented GraphQL as a middleware layer, cutting response time and database calls by 2x.</li>
+            <li>Developed a micro-influencer management platform for brands, including search and recommendation systems.</li>
+            <li>Evaluated and benchmarked database technologies and designed the foundational architecture of the campaign management system.</li>
+            <li>Built campaign performance analytics and data visualizations that gave brands actionable insights.</li>
+            <li>Cut database calls by 50% and improved response time by introducing GraphQL as middleware.</li>
           </ul>
         </div>
       </div>
@@ -385,38 +442,76 @@
           <div class="job-title">Full Stack Developer</div>
           <div class="job-org">Fork Media · Mumbai, India</div>
           <ul>
-            <li>Built the data pipeline for Buzzerati, a market-leading SaaS influencer-recommendation platform.</li>
-            <li>Designed a scalable data-management platform and microservices for audience profiling — improving server efficiency by 53% and profiling accuracy by 30%.</li>
+            <li>Owned the data pipeline for Buzzerati, a market-leading SaaS platform for influencer recommendation.</li>
+            <li>Designed and built a scalable data management platform and microservices for audience profiling.</li>
+            <li>Improved server efficiency and data-collection response time by 53% and audience profiling accuracy by 30%.</li>
+            <li>Built back-end services and responsive single-page web applications with data modeling and visualization for consumer-facing products.</li>
           </ul>
         </div>
       </div>
     </div>
 
     <div class="impact" style="margin-top:40px;">
-      <div class="impact-card"><div class="impact-num">8+</div><div class="impact-label">Years of experience</div></div>
-      <div class="impact-card"><div class="impact-num">4</div><div class="impact-label">Engineers mentored</div></div>
-      <div class="impact-card"><div class="impact-num">$79K</div><div class="impact-label">Annualized savings delivered</div></div>
-      <div class="impact-card"><div class="impact-num">2×</div><div class="impact-label">API response-time improvement</div></div>
+      <div class="impact-card"><div class="impact-num">9+</div><div class="impact-label">Years of experience</div></div>
+      <div class="impact-card"><div class="impact-num">7+</div><div class="impact-label">Years in medical device software</div></div>
+      <div class="impact-card"><div class="impact-num">$79K</div><div class="impact-label">Est. annualized savings (Green Belt)</div></div>
+      <div class="impact-card"><div class="impact-num">50%</div><div class="impact-label">Fewer database calls via GraphQL</div></div>
     </div>
   </div>
 </section>
 
 <section id="education">
   <div class="wrap reveal">
-    <div class="eyebrow">Academic background</div>
-    <h2 class="section-title">Education</h2>
+    <div class="eyebrow">Learning</div>
+    <h2 class="section-title">Education & Certifications</h2>
     <div class="edu-item">
       <div class="edu-icon">MS</div>
       <div>
-        <div class="edu-degree">Computer Science — AI Specialization</div>
-        <div class="edu-meta">State University of New York at Buffalo · Aug 2017 – Feb 2019</div>
+        <div class="edu-degree">M.S. in Computer Science — Specialization in Artificial Intelligence</div>
+        <div class="edu-meta">State University of New York at Buffalo · Feb 2019</div>
       </div>
     </div>
     <div class="edu-item">
       <div class="edu-icon">BE</div>
       <div>
-        <div class="edu-degree">Computer Science</div>
-        <div class="edu-meta">Canara Engineering College · Aug 2010 – May 2014</div>
+        <div class="edu-degree">B.E. in Computer Science</div>
+        <div class="edu-meta">Canara Engineering College · May 2014</div>
+      </div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-icon">GB</div>
+      <div>
+        <div class="edu-degree">DRM Green Belt Certification</div>
+        <div class="edu-meta">Medtronic · Mar 2023</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="leadership">
+  <div class="wrap reveal">
+    <div class="eyebrow">Beyond the code</div>
+    <h2 class="section-title">Community & leadership</h2>
+    <p class="section-intro">Building great teams matters to me as much as building great software. Here's where I give back.</p>
+    <div class="edu-item">
+      <div class="edu-icon">AIM</div>
+      <div>
+        <div class="edu-degree">AIM CO Steering Committee, Cultural Pillar Lead</div>
+        <div class="edu-meta">Aug 2023 – Present</div>
+      </div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-icon">MWN</div>
+      <div>
+        <div class="edu-degree">Medtronic Women's Network Leadership Team, Programming Chair for Personal Development</div>
+        <div class="edu-meta">Aug 2022 – Sep 2023</div>
+      </div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-icon">SWE</div>
+      <div>
+        <div class="edu-degree">Society of Women Engineers, Professional Member supporting outreach and hiring</div>
+        <div class="edu-meta">May 2019 – Present</div>
       </div>
     </div>
   </div>
@@ -426,17 +521,18 @@
   <div class="wrap reveal">
     <div class="foot-grid">
       <div>
-        <h2>Let's talk.</h2>
-        <p>Available for full-stack and platform engineering roles — open to remote and Colorado-based opportunities.</p>
+        <h2>Let's talk! 👋</h2>
+        <p>I'm looking for my next Senior Software Engineer role in full-stack, C++, or TypeScript/React, remote or here in Colorado. I'd love to hear what you're building.</p>
       </div>
       <div class="foot-links">
         <a href="mailto:prajnabhandary03@gmail.com">✉ Email</a>
-        <a href="tel:+13159753364">☎ (315) 975-3364</a>
+        <a href="https://www.linkedin.com/in/prajna-bhandary/" target="_blank" rel="noopener">in LinkedIn</a>
+        <a href="https://github.com/PrajnaBhandary03" target="_blank" rel="noopener">⌥ GitHub</a>
       </div>
     </div>
     <div class="bottom-line">
       <span>Prajna Bhandary · Broomfield, CO</span>
-      <span>Full-Stack Software Engineer</span>
+      <span>Thanks for stopping by ✨</span>
     </div>
   </div>
 </footer>
